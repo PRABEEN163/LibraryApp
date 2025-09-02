@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to My Calculator</title>
+    <style>
+        /* Gradient animated background */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .calculator-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            width: 400px;
+            animation: fadeIn 1s ease forwards;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            color: #4e4e4e;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: #6c5ce7;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #6c5ce7;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #341f97;
+            box-shadow: 0 0 15px #341f97;
+            transform: scale(1.05);
+        }
+
+        span {
+            color: #d63031;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-box">
+        <h1>Welcome to My Calculator</h1>
+
+        <p><strong>Result: </strong> <span th:text="${result}">0</span></p>
+        <p><strong>Operation: </strong><span th:text="${operation}">None</span></p>
+
+        <form action="/calc" method="post">
+            <label for="num1">Enter Number 1:</label>
+            <input type="number" name="num1" id="num1" value="${num1}" required />
+
+            <label for="num2">Enter Number 2:</label>
+            <input type="number" name="num2" id="num2" value="${num2}" required />
+
+            <div class="button-group">
+                <button type="submit" name="operation" value="add">Add</button>
+                <button type="submit" name="operation" value="sub">Subtract</button>
+                <button type="submit" name="operation" value="mul">Multiply</button>
+                <button type="submit" name="operation" value="div">Divide</button>
+				<button type="submit" name="operation" value="mod">Modulus</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
